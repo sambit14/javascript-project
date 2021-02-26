@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toast notification</title>
+    <style>
+
+      body{
+          background-color: purple;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          overflow: hidden;
+          margin: 0;
+      }
+      .btn{
+          background-color: #ffffff;
+          color: rebeccapurple;
+          font-family: inherit;
+          font-weight: bold;
+          padding: 1rem;
+          border-radius: 5px;
+          border: none;
+          cursor: pointer;
+      }
+      .btn:focus{
+          outline: none;
+      }
+      .btn:active{
+          transform: scale(0.98);
+      }
+      #toasts{
+          position: fixed;
+          bottom:10px;
+          right: 10px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+      }
+      .toast{
+          background-color: #ffffff;
+          color: rebeccapurple;
+          border-radius: 5px;
+          padding: 1rem 2rem;
+          margin: 0.5rem;
+      }
+    </style>
+</head>
+<body>
+    <div id="toasts">
+       <div class="toast">Hello world</div>
+    </div>
+    
+    <button class="btn" id="btn">show notification</button>
+    <script>
+        const button  = document.getElementById('btn');
+        const toasts =  document.getElementById('toasts');
+
+        button.addEventListener('click',()=>{
+            createNotification();
+        })
+        function createNotification(){
+            const notif = document.createElement('div');
+            notif.classList.add('toast');
+            notif.innerText = 'This is notification';
+            toasts.appendChild(notif);
+            setTimeout(()=>{
+                notif.remove();
+            },3000)
+        }
+    </script>
+</body>
+</html>
