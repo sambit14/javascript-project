@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />    
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+      body{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          height: 100vh;
+          margin: 0;
+          overflow: hidden;
+      }
+      h3{
+         margin-bottom: 0px;
+         text-align: center;
+      }
+      small{
+        display: block;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .fa-heart{
+          color: red;
+      }
+      .loveMe{
+          height: 440px;
+          width: 300px;
+          background:url('https://images.unsplash.com/photo-1612103145094-c7f8559fab10?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80')no-repeat center center/cover;
+          margin: auto;
+          cursor: pointer;
+          max-width: 100%;
+          position: relative;
+          box-shadow: 2px 2px 2px 2px #888888;
+      }
+      .loveMe .fa-heart{
+          position: absolute;
+          top: 280px;
+          right: 100px;
+          transform: translate(-50% ,-50%)scale(0);
+          animation: grow 0.6s linear ;
+      }
+
+      @keyframes grow {
+          to{
+            transform: translate(-50% ,-50%)scale(10);
+            opacity: 0;
+          }
+      }
+    </style>
+</head>
+<body>
+      <h3>Double click on hearts  <i class="fas fa-heart"></i></h3>
+      <small> you liked it <span id="times">0</span> times</small>
+      <div class="loveMe">
+        <i class="fas fa-heart"></i>
+      </div>
+    
+    <script>
+      let loveMe =  document.querySelector('.loveMe');
+      let count = document.querySelector('#times');
+      let dblCount = 0;
+      let timeClicked =0;
+
+      loveMe.addEventListener('click',(e)=>{
+         if(dblCount ===0){
+             dblCount = new Date().getTime();
+         }else{
+             if((new Date().getTime() - dblCount)  < 800 ){
+                  createHeartSymbol(e);
+                  dblCount = 0;
+             } else{
+                dblCount = new Date().getTime();
+             }
+         }
+      })
+
+      function createHeartSymbol(event){
+           const X = event.clientX;
+           const Y = event.clientY;
+           const heart =  document.createElement('i');
+           heart.classList.add('fa');
+           heart.classList.add('fa-heart');
+
+           const  offsetLeft  = event.target.offsetLeft;
+           const  offsetTop =  event.target.offsetTop;
+
+           const xInside =  X - offsetLeft;
+           const yInside =  Y - offsetTop;
+
+           console.log(X,Y);
+           console.log(offsetLeft,offsetTop);
+           console.log(xInside,yInside);
+           heart.style.top = `${yInside}px`;
+           heart.style.left =  `${xInside}px`;
+           timeClicked ++;
+           count.innerHTML =  timeClicked;
+           loveMe.appendChild(heart)
+           setTimeout(()=>{
+            heart.remove();
+           },1000)
+
+      }
+    </script>
+</body>
+</html>
