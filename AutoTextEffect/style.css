@@ -1,0 +1,38 @@
+*{
+   box-sizing: border-box;
+}
+
+
+body{
+    background-color: darkmagenta;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    overflow: hidden;
+}
+.speed{
+    font-size: 20px;
+    background-color: darkorange;
+    position: relative;
+    bottom: -250px;
+    padding: 10px 20px;
+}
+.loading{
+    font-size: 20px;
+    background-color:darkviolet;
+    position: relative;
+    bottom: 25px;
+    padding: 10px 20px;
+}
+input{
+    width: 50px;
+    padding: 5px;
+    border: none;
+    text-align: center;
+}
+input:focus{
+    outline: none;
+}
