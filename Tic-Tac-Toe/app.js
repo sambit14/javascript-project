@@ -77,5 +77,5 @@ document.getElementById('reset').addEventListener('click',e=>{
     gameOver = false;
     document.getElementsByClassName('info')[0].innerText = `Turn for ${turn}`;
     document.querySelector('.imgbox').getElementsByTagName('img')[0].style.width = '0px'
-    document.getElementsByClassName('line')[0].style.width ='0'
+    document.getElementsByClassName('line')[0].style.width ='0';
 })
